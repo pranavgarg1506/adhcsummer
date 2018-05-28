@@ -1,0 +1,1 @@
+This is the code about finding  all the possible small orders in which a big matrix can be broke down..
