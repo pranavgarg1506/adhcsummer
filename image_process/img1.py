@@ -21,6 +21,12 @@ cv2.rectangle(img3,(100,100),(200,200),(0,255,0),5)	#_________________	RECTANGLE
 
 cv2.circle(img3,(200,200),100,(255,0,0),12)		#_________________	CIRCLE
 
+cv2.ellipse(img3,(100,100),(150,125),10,0,270,(100,100,100),3)
+#		   center   x  y        sa  fa    color     thick
+pts = np.array([[10,5],[20,30],[70,20],[50,10]], np.int32)
+pts = pts.reshape((-1,1,2))
+cv2.polylines(img3,[pts],True,(0,255,255))
+
 
 
 # to save the image locally
