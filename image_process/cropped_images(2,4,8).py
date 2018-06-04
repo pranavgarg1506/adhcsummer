@@ -4,24 +4,25 @@
 import cv2
 import numpy as np
 
-
+# read the image
 img = cv2.imread('cat.jpg',1)
 shape = np.shape(img)
 
-x = shape[0]
-y = shape[1]
+# shape of the image
+shape_x = shape[0]
+shape_y = shape[1]
 
 def half():
-	x1 = int(x/2)
-	y1 = int(y/2)
+	x1 = int(shape_x/2)
+	y1 = int(shape_y/2)
 	
-	rest_x = x-x1
-	rest_y = y-y1
+	rest_x = shape_x-x1
+	rest_y = shape_y-y1
 	
 	main = img[0:x1,0:y1]
-	rest = img[x1:x,y1:y]
-	rest_top = img[0:x1,y1:y]
-	rest_bottom= img[x1:x,0:y1]
+	rest = img[x1:shape_x,y1:shape_y]
+	rest_top = img[0:x1,y1:shape_y]
+	rest_bottom= img[x1:shape_x,0:y1]
 	
 	cv2.imshow('main',main)
 	cv2.imshow('rest',rest)
@@ -32,16 +33,16 @@ def half():
 	cv2.destroyAllWindows()
 
 def quarter():
-	x1 = int(x/4)
-	y1 = int(y/4)
+	x1 = int(shape_x/4)
+	y1 = int(shape_y/4)
 	
-	rest_x = x-x1
-	rest_y = y-y1
+	rest_x = shape_x-x1
+	rest_y = shape_y-y1
 	
 	main = img[0:x1,0:y1]
-	rest = img[x1:x,y1:y]
-	rest_top = img[0:x1,y1:y]
-	rest_bottom= img[x1:x,0:y1]
+	rest = img[x1:shape_x,y1:shape_y]
+	rest_top = img[0:x1,y1:shape_y]
+	rest_bottom= img[x1:shape_x,0:y1]
 	
 	cv2.imshow('main',main)
 	cv2.imshow('rest',rest)
@@ -52,16 +53,16 @@ def quarter():
 	cv2.destroyAllWindows()
 
 def octal():
-	x1 = int(x/8)
-	y1 = int(y/8)
+	x1 = int(shape_x/8)
+	y1 = int(shape_y/8)
 	
-	rest_x = x-x1
-	rest_y = y-y1
+	rest_x = shape_x-x1
+	rest_y = shape_y-y1
 	
 	main = img[0:x1,0:y1]
-	rest = img[x1:x,y1:y]
-	rest_top = img[0:x1,y1:y]
-	rest_bottom= img[x1:x,0:y1]
+	rest = img[x1:shape_x,y1:shape_y]
+	rest_top = img[0:x1,y1:shape_y]
+	rest_bottom= img[x1:shape_x,0:y1]
 	
 	cv2.imshow('main',main)
 	cv2.imshow('rest',rest)
