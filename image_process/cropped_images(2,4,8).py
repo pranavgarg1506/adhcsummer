@@ -5,7 +5,7 @@ import cv2
 import numpy as np
 
 # read the image
-img = cv2.imread('cat.jpg',1)
+img = cv2.imread('cat2.jpg',1)
 shape = np.shape(img)
 
 # shape of the image
