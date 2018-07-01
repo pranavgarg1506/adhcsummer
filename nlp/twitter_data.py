@@ -16,12 +16,12 @@ import matplotlib.pyplot as plt
 
 stop_words=stopwords.words('english')
 
+consumer_key = '4pFDi9hjsRO1ETQGPL3OD8jTh'
+consumer_secret = 'AwEyTj7s9mI5jxMs4C2hohzWHXXtwoQNuIUJdOyAnWsLdoRpOb'
 
-consumer_key = ''
-consumer_secret = ''
+access_key = '2255612793-3qkacVeIuFQaJykhvSvMadLPXvUuvm84ZXO62pu'
+access_secret = 'qdsqHnAy7YprfN3ejtjO5i8E6zO1wgYmSTMKvE86XXfyd'
 
-access_key = ''
-access_secret = ''
 
 #for connection
 auth = tweepy.OAuthHandler(consumer_key,consumer_secret)
@@ -40,8 +40,18 @@ print(dir(connect))
 
 
 
-#____TYPE A KEYWORD AND SEARCH IT ON TWITTER
-get_data=connect.search('modi',count=100) # count can be max 100
+#________________________ I  TYPE A KEYWORD AND SEARCH IT ON TWITTER
+get_data=connect.search('race3',count=100) # count can be max 100
+
+#________________________II for a particular time period
+#get_data = connect.home_timeline()
+
+
+
+
+
+
+
 
 result = []
 for i in get_data:
@@ -51,13 +61,14 @@ for i in get_data:
 	tokenized_data = word_tokenize(joined_data)						# DATA
 	stop_free_data = [ i for i in tokenized_data  if i.lower() not in stop_words]
 	joined_data1 = ' '.join(stop_free_data)
-	#print(joined_data1)	
+	#print(joined_data1)
 	#________________ putting sentiment analyzer on the data too
 	analysis = TextBlob(joined_data1)
 	#print(analysis.sentiment)
 	#analysis.sentiment is of list as type having size 2 and individual element can be accessed by [] method
 	result.append(analysis.sentiment[0])
 
+	
 #print(len(result))
 #print(result)   # printing sentiment list
 
@@ -70,29 +81,39 @@ with open('sentiment_data_plot.csv','w') as file:
 
 file.close() 
 '''
+vsad=[]
 sad=[]
 neutral=[]
 happy=[]
+vhappy=[]
 #TO CATEGORISE THE RESULT
 for i in result:
-	if i<0.0:
+	if i<(-0.5):
+		vsad.append(i)
+	elif (-0.5)<=i<0.0:
 		sad.append(i)
+	elif 0.0<i<0.5:
+		happy.append(i)
 	elif i==0.0:
 		neutral.append(i)
 	else:
-		happy.append(i)
+		vhappy.append(i)
 
+vsad = len(vsad)
 sad = len(sad)
 neutral = len(neutral)
 happy = len(happy)
+vhappy = len(vhappy)
 
-print(sad,neutral,happy)
 
-y = [sad,neutral,happy]
-x = ['sad','neutral','happy']
+print(vsad,sad,neutral,happy,vhappy)
+
+y = [vsad,sad,neutral,happy,vhappy]
+x = ['vsad','sad','neutral','happy','vhappy']
 plt.xlabel('EMOTIONS')
 plt.ylabel('FREQUENCY')
 plt.bar(x,y,label='graph')
 plt.legend()
 plt.show()
+
 
